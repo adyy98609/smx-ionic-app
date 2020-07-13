@@ -29,7 +29,7 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^1.5.2",
     "@claviska/jquery-dropdown": "^2.0.3",
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "classlist.js": "^1.1.20150312",
     "color": "^3.1.2",
     "dompurify": "^2.0.11",
