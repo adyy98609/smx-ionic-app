@@ -1,0 +1,112 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+:host {
+  &.select-disabled {
+    .select-container {
+      background-color: $background-color-disable;
+      color: $color-disable;
+      border-color: $color-disable;
+      pointer-events: none;
+      &:hover {
+        * {
+          color: $color-disable;
+          cursor: not-allowed;
+        }
+      }
+      .select-caret {
+        color: $color-disable;
+      }
+    }
+  }
+}
+
+.select-container {
+  @include flex(space-between, center);
+  border: 1px solid var(--question-answer-color);
+  border-radius: $box-radius;
+  position: relative;
+  background: $color-white;
+  min-width: 150px;
+  width: 100%;
+  flex-grow: 1;
+  // height: 100%;
+  .select-caret {
+    color: var(--question-answer-color);
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  .select-label {
+    flex-grow: 1;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100% - 28px); //deduct dropdown icon width
+    font-size: $font-size;
+    margin-left:$margin-5;
+  }
+  .dropdown-container {
+    position: absolute;
+    width: 100%;
+    border: 1px solid var(--question-answer-color);;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    z-index: 1002;
+    left: 0;
+    &.down {
+      top: 100%;
+    }
+    &.up {
+      bottom: 100%;
+    }
+    .option-list {
+      padding: 0;
+      margin: 0;
+      .option {
+        list-style-type: none;
+        padding: 7px 9px;
+        // border-top: 1px solid var(--question-answer-color);
+        &:hover {
+          background-color: var(--question-answer-color);
+          // color: var(--answer-text-color);
+          color: #fff;
+        }
+      }
+    }
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+}
+/* .select-error {
+  color: red;
+  font-style: italic;
+  font-size: 13px;
+} */
+.icon-button {
+  @include circle($icon-size, true);
+  @include flex(center, center);
+  border: none;
+  padding: 5px;
+}
+.chev-down {
+  &::before {
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    content: "";
+    height: 0.45em;
+    width: 0.45em;
+  }
+}
+
+.chev-down::before {
+  transform: rotate(135deg);
+}

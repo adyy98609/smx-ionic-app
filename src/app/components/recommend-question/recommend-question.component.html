@@ -1,0 +1,37 @@
+<div class="question-container">
+  <div class="header" [ngClass]="{ 'mandatory-sign': mandatory }">
+    <span [innerHTML]="headerTxt | safeHtml"></span>
+  </div>
+  <div class="question-error" *ngIf="isRequired">
+    <p><span class="mandatory-sign"></span>{{translations.requiredLabel}}</p>
+  </div>
+  <ng-container *ngIf="!shapeSelected">
+    <ng-container>
+      <smx-radio-group class="option-list answers-container" #radio (change)="selectOption(radio.value)" [selected]="value"
+        [ngClass]="direction" [name]="id">
+        <smx-radio class="option-item" *ngFor="let option of options" [value]="option.value"
+          [ngClass]="{ selected: value == option.value }">
+          <span [innerHTML]="option.displayValue | safeHtml"></span>
+        </smx-radio>
+        <smx-radio [name]="id" class="option-item" *ngIf="isNAOption" value="NA"
+          [ngClass]="{ selected: value == 'NA' }">{{translations.naOptionLabel}}</smx-radio>
+      </smx-radio-group>
+    </ng-container>
+  </ng-container>
+
+  <!-- <ng-container *ngIf="shapeSelected">
+    <div class="shapes-list" [class.horizontal]="direction">
+      <smx-tile class="option-item" *ngFor="let option of options"> </smx-tile>
+    </div>
+  </ng-container> -->
+  <!-- keeping place holder for slider comopnent for now
+     need to render it based on interaction style-->
+  <ng-container *ngIf="shapeSelected" >
+    <div class="scale-slider answers-container">
+      <smx-slider [scale]="options" [shape]="shapeSelected" [type]="interactionType" [disabled]="disableScale" [showValue]="showValue" #slider
+        (change)="selectOption(slider.value)" [value]="value" [showFaceEmojis]="showFaceEmojis"></smx-slider>
+      <smx-checkbox #check (change)="selectNA(check.checked)" *ngIf="isNAOption" value="NA" [checked]="value==='NA'">{{translations.naOptionLabel}}
+      </smx-checkbox>
+    </div>
+  </ng-container>
+</div>

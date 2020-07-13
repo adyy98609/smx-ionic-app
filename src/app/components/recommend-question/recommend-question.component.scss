@@ -1,0 +1,96 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.question-container {
+  @include ques-block;
+  .header {
+    font-size: $ques-font-size;
+    color: var(--question-color);
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .scale-slider {
+    width: 100%;
+    margin-top: 25px;
+    smx-checkbox {
+      margin-top: 10px;
+      display: block;
+      color: var(--question-answer-color);
+      &::ng-deep {
+        .checkbox-container {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .option-list {
+    width: 100%;
+  }
+  .option-item {
+    @include flex(flex-start, center);
+    margin-bottom: $ques-option-margin;
+    color: var(--question-answer-color);
+    background-color: var(--answer-shade-color);
+    border: 1px solid var(--question-answer-color);
+    border-radius: $box-radius;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.selected {
+      background-color: var(--question-answer-color);
+      color: var(--answer-shade-color);
+    }
+  }
+
+  .shapes-list {
+    @include column-count(2, true);
+    .option-item {
+      justify-content: center;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop-breakpoint) {
+  .question-container {
+    .horizontal {
+      &.option-list {
+        @include flex(flex-start, flex-start);
+        width: 100%;
+        text-align: center;
+      }
+      //unsetting few css properties which are not
+      //required in horizontal scale view
+      .option-item {
+        @include flex(flex-start, center, column);
+        width: $page-items-width;
+        margin: 0;
+        background-color: transparent;
+        border: none;
+        border-radius: $box-radius;
+        &:hover {
+          border: none;
+          background-color: transparent;
+        }
+        &.selected {
+          background-color: transparent;
+          color: var(--question-answer-color);
+        }
+      }
+      ::ng-deep.radio-container {
+        flex-direction: column;
+        //should not break words in scale questions
+        word-break: normal;
+        padding: $ques-option-padding;
+        width: 100%;
+        span.label {
+          margin: $ques-option-margin 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

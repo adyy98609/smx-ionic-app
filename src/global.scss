@@ -1,0 +1,448 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+/* You can add global styles to this file, and also import other style files */
+
+// Colors
+$color-default: #6ca898;
+$color-danger: #e9667b;
+$color-white: #ffffff;
+$color-disable: #ccc;
+$color-black: #000000;
+$color-separator: #70707040;
+$background-color-disable: #f6f6f6;
+
+// System Defaults
+$font-size: 16px;
+
+//margin
+$margin-5: 5px;
+
+$box-padding: 10px;
+$box-margin: 15px;
+$box-radius: 2px;
+$box-border: 1px solid $color-default;
+$box-border-highlight: 1px solid darken($color-default, 10%);
+$box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+
+$margin-mob: 10px 10px 60px;
+$margin-tab: 50px 50px 100px;
+$margin-desk: 50px 15% 100px;
+$padding-tab: 20px;
+$padding-mob: 10px;
+
+// Question
+$ques-font-size: 20px;
+$ques-font-weight: bold;
+$ques-color: rgba(0, 0, 0, 0.65);
+$ques-padding: 10px;
+$ques-padding-lg: 20px;
+$ques-margin: 20px;
+$ques-header-margin: 15px;
+$ques-header-padding: 20px;
+$ques-resp-padding: 0px;
+$ques-error-height: 50px;
+$ques-error-margin: 10px;
+$ques-bg-color: rgba(255, 255, 255, 0.9);
+
+// Question Options
+$ques-option-bg-color: lighten($color-default, 35%);
+$ques-option-margin: 10px;
+$ques-option-msg-font-size: 14px;
+$ques-option-padding: 20px 0px;
+$ques-option-list-margin-v: 45px;
+$ques-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+$ques-block-margin: 75px 0;
+$ques-block-padding: 5px 0;
+$ques-block-inactive-opacity: 0.3;
+
+//Response container
+$response-input-width: 100%;
+
+// Slider
+$slider-height: 20px;
+$slider-width: 330px;
+$slider-knob: 32px;
+$slider-radius: 10px;
+$slider-knob-radius: 50%;
+
+// Progress Bar
+$progress-height: 10px;
+$progress-color: rgba(0, 0, 0, 0.25);
+
+// Icon
+$icon-size: 32px;
+
+// Input
+$input-border: $box-border;
+$input-height: 35px;
+$input-padding: 10px;
+$input-margin: 5px 10px;
+$input-border-radius: $box-radius;
+$input-label-margin: 10px;
+$input-error-bg-color: #fff0f0;
+$input-error-border-color: #a90329;
+
+// Radio
+$radio-size: 20px;
+$radio-checked-size: $radio-size/2;
+$radio-option-padding: 10px;
+$radio-option-margin-h: 15px;
+$radio-option-margin-v: 10px;
+
+// Checkbox
+$checkbox-check-width: 7px;
+$checkbox-check-height: 15px;
+$checkbox-check-size: 2px;
+
+// Page
+$page-margin: 20px;
+$page-margin-lg: 15%;
+$page-padding: 10px;
+$page-margin-header: 10px;
+$font-size-title: 1.25rem; //  20px (--16px)
+$font-size-subtitle: 0.875rem; // 14px (--16px)
+$page-items-width: 100%;
+
+// Logo
+$logo-margin: 30px;
+$logo-width: 150px;
+$logo-height: 90px;
+$logo-width-lg: 300px;
+$logo-height-lg: 150px;
+
+// Transition
+$transition-dur: 0.2s;
+$transition-ease: linear;
+
+//textarea
+$textarea-border: 0;
+$textarea-height: 35px;
+$textarea-width: 100%;
+$textarea-padding: 5px 0;
+$textarea-margin: 10px;
+$textarea-border-radius: $box-radius;
+$textarea-focus-outline: none;
+$textarea-msg-font-size: 12px;
+$textarea-msg-padding: 15px;
+
+// Tile
+$tile-ribbon-color: #57575e;
+
+//datepicker
+$datepicker-box-shadow-bottom: -2px 1px 5px rgba(0, 0, 0, 0.3), 2px 2px 5px rgba(0, 0, 0, 0.3);
+$datepicker-box-shadow-top: 2px 0px 5px rgba(0, 0, 0, 0.3), -2px 0px 5px rgba(0, 0, 0, 0.3);
+$datepicker-week: lighten($color-default, 40%);
+$datepicker-header-bg: lighten($color-default, 25%);
+$datepicker-day: $color-white;
+$datepicker-year: lighten($color-default, 5%);
+$datepicker-day-padding: 10px 0px;
+$datepicker-day-hover-bg: lighten($color-default, 25%);
+$datepicker-day-selected-bg: $color-default;
+$datepicker-day-selected-color: $color-white;
+$datepicker-day-month-color: $color-default;
+$datepicker-hover-bg: lighten($color-disable, 15%);
+$datepicker-week-color: #bbb;
+
+//devices breakpoint for media queries
+$desktop-breakpoint: 1025px;
+$tablet-breakpoint: 641px;
+$mobile-breakpoint: 640px;
+
+//footer
+$footer-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+
+//progress-bar
+$progressbar-height: 10px;
+
+@mixin flex($h: flex-start, $v: flex-start, $dir: row) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $h;
+    align-items: $v;
+  }
+  
+  /// Creates circle with specified size
+  /// @param $size - size of circle (diameter)
+  /// @param { Boolean } $force - forces, width in case space not available
+  @mixin circle($size, $force: false) {
+    @if $force {
+      min-width: $size;
+      min-height: $size;
+      height: $size;
+    } @else {
+      width: $size;
+      height: $size;
+    }
+  
+    border-radius: 50%;
+  }
+  
+  @mixin ellipsis($maxWidth) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  @mixin button() {
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    background-color: $color-default;
+    padding: 12px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:focus {
+      opacity: 1;
+    }
+  }
+  
+  /// creates a ribbon
+  /// @param $size - size of ribbon
+  @mixin ribbon($size, $color) {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 $size $size 0;
+    border-color: transparent $color transparent transparent;
+  }
+  
+  /// Creates column layout with passed number of column $count argument,
+  /// @param { Number } $count - total number of columns in layout
+  /// @param { Boolean } $force - forces layout to display passed count even if space is not available
+  /// @param { String } $spacing - forces layout to with provided spacing between them
+  @mixin column-count($count: 1, $force: false, $spacing: $ques-option-margin) {
+    display: flex;
+    flex-wrap: wrap;
+    & > * {
+      @if $force {
+        min-width: calc(100% / #{$count} - (#{$spacing} * #{$count}));
+      } @else {
+        max-width: calc(100% / #{$count} - (#{$spacing} * #{$count}));
+        width: 100%;
+      }
+    }
+  }
+  
+  /// Creates question block with default stylings
+  @mixin ques-block($falign: flex-start) {
+    @include flex(flex-start, $falign, column);
+    padding: $ques-padding;
+    transition: $transition-dur $transition-ease;
+    box-shadow: $ques-box-shadow;
+    background-color: $ques-bg-color;
+  }
+  
+  /// Creates container block with default stylings
+  @mixin container-block() {
+    @include flex(flex-start, center, column);
+    box-shadow: $box-shadow;
+    padding: $box-padding;
+    transition: $transition-dur $transition-ease;
+    box-shadow: $ques-box-shadow;
+    background-color: $ques-bg-color;
+  }
+  
+  @mixin error-box() {
+    background: $input-error-bg-color 0% 0% no-repeat padding-box;
+    border: 1px solid $input-error-border-color;
+    opacity: 1;
+  }
+  
+  @mixin error-text() {
+    text-align: left;
+    font: Italic 13px/18px "Open Sans";
+    letter-spacing: 0px;
+    color: $color-danger;
+    opacity: 1;
+  }
+  
+  @mixin textarea-block() {
+    textarea::placeholder {
+      opacity: 0.5;
+      color: $color-default;
+    }
+    .textarea {
+      height: $textarea-height;
+      width: $textarea-width;
+      border: $textarea-border;
+      padding: $textarea-padding;
+      border-radius: $textarea-border-radius;
+      font-size: $font-size;
+      font-family: inherit;
+      resize: none;
+      outline: $textarea-focus-outline;
+      overflow: hidden;
+      color: var(--question-answer-color);
+      border-bottom: 1px solid $color-disable;
+      background: none;
+      &:focus {
+        outline: $textarea-focus-outline;
+        width: $textarea-width;
+        border-bottom: 1px solid;
+      }
+    }
+    .msg {
+      padding-top: $textarea-msg-padding;
+      color: var(--question-color);
+      font-size: $textarea-msg-font-size;
+    }
+  }
+
+  //* sign used to show mandatory field
+.mandatory-sign::after {
+    content: "*";
+    font-weight: 700;
+    color: $color-danger;
+    padding-left: 3px;
+  }
+  
+  // Error text shown under fields in case of error
+  .error-text {
+    text-align: left;
+    padding-top: 5px;
+    font: Italic 13px/18px var(--page-font);
+    letter-spacing: 0px;
+    color: $color-danger;
+    opacity: 1;
+  }
+  
+  // Input box highlight style in case of error present in field.
+  //e.g. used to highlight input text block in case of error
+  .error-box {
+    background: $input-error-bg-color 0% 0% no-repeat padding-box;
+    border: 1px solid $input-error-border-color !important;
+    opacity: 1;
+  }
+  
+  @media only screen and (max-width: $mobile-breakpoint) {
+    .question-container {
+      padding: $ques-padding;
+    }
+  }
+  
+  @media only screen and (max-width: $mobile-breakpoint) {
+    .question-container {
+      padding: $ques-padding;
+    }
+  }
+  
+  @media only screen and (min-width: $mobile-breakpoint) {
+    .question-container {
+      padding: $ques-padding-lg;
+    }
+  }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  // Default theme variables
+  --question-answer-color: #6ca898;
+  --answer-bg-color: #6ca89840;
+  --page-background-color: #f2f2f2;
+  --question-shape: circle;
+  --page-background-position: cover;
+  --question-shape-color: #77aaa0;
+  --question-color: #000000a6;
+  --page-button-color: #6ca898;
+  --page-background-brightness: 100;
+  --page-font: "Roboto", "Open Sans", sans-serif;
+  --page-logo-position: center;
+  --page-button-text-color: #eeeeee;
+  --answer-shade-color: rgba(#6ca898, 0.2);
+  --answer-text-color: #333333;
+  --button-shade-color: rgba(#6ca898, 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  font-size: $font-size;
+  font-family: var(--page-font);
+  background-color: var(--page-background-color);
+  background-size: cover;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+//Scroll styling
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--question-color);
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--question-color);
+  cursor: pointer;
+}
+
+//scrollbar changes for firefox
+.scrollbar-ff {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent !important;
+  scrollbar-width: 0px !important;
+}
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: initial;
+}
+
+// CK-EDITOR Stylings
+ol,
+ul {
+  list-style-position: inside;
+}

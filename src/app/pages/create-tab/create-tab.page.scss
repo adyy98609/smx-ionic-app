@@ -1,0 +1,16 @@
+.container-questions{
+    overflow-y: scroll;
+}
+.container-questions::-webkit-scrollbar {
+    display: none;
+}
+.add-question-button button{
+    position: fixed;
+    left: 120px;
+    top: 500px;
+    width: 40%;
+    color: white;
+    height: 30px;
+    font-size: 20px;
+    background-color: black;
+}

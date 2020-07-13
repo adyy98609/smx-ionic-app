@@ -1,0 +1,57 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+:host {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  height: 50px;
+  padding: 10px;
+  @include flex(space-between, center);
+  width: 100%;
+  background-color: $color-white;
+  color: $color-black;
+  box-shadow: $footer-box-shadow;
+  .icon-button {
+    @include circle($icon-size, false);
+    @include flex(center, center);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--page-button-text-color);
+    background-color: var(--page-button-color);
+    padding: 5px;
+    smx-icon {
+      position: relative;
+      $offset-value: 1px;
+      &.left-arrow {
+        right: $offset-value;
+      }
+      &.right-arrow {
+        left: $offset-value;
+      }
+    }
+    &.hidden {
+      visibility: hidden !important;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+    &:focus {
+      opacity: 1;
+    }
+  }
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    .powered {
+      padding-right: 5px;
+      white-space: nowrap;
+    }
+  }
+}

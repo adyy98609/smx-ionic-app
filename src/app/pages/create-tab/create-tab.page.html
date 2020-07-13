@@ -1,0 +1,54 @@
+<!--ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Create
+    </ion-title>
+  </ion-toolbar>
+</ion-header-->
+
+<!--ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Create Survey</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Create Survey page"></app-explore-container>
+
+</ion-content-->
+
+<div class="container-questions" *ngIf="isCreate">
+  <smx-recommend-question [questionMeta]="questions.tap"
+[translations]="translations" [idx]="1">
+</smx-recommend-question>
+<smx-recommend-question [questionMeta]="questions.slider"
+[translations]="translations" [idx]="2">
+</smx-recommend-question>
+  <smx-comment-question [questionMeta]="questions.comment"
+  [translations]="translations"[idx]="3" [type]="'COMMENT'">
+</smx-comment-question>
+</div>
+
+<div class="add-question-container" *ngIf="!isCreate">
+  <div class="tiles-list answers-container horizontal">
+  <smx-tile 
+  *ngFor="let option of addQuestionOptions" #check 
+  class="option-item" 
+  [name]="optionName" 
+  [image]="option.image"
+  [icon]="option.icon"
+  [value]="option.value" 
+  [multi]="false" 
+  [selected]="option.value == value"
+  (change)="selectImageOption(option.value)">
+  <span 
+    [title]="option.displayValue" 
+    [innerHTML]="option.displayValue | safeHtml">
+  </span>
+</smx-tile>
+</div>
+</div>
+<div class="action add-question-button" *ngIf="isCreate">
+  <button class="button" (click)="addQuestion()">+ Add Question</button>
+</div>
+

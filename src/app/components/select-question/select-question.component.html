@@ -1,0 +1,140 @@
+<div class="question-container">
+  <div class="header" [ngClass]="{ 'mandatory-sign': mandatory }">
+    <span [innerHTML]="headerTxt | safeHtml"></span>
+  </div>
+  <div class="question-error" *ngIf="!isOtherSelected && (isMandatory || isRequired)">
+    <p><span class="mandatory-sign"></span> {{translations.requiredLabel}}</p>
+  </div>
+
+  <!-- Container for single select questions -->
+  <ng-container *ngIf="!isMulti">
+    <!-- Container for single select question with simple text options -->
+    <ng-container *ngIf="!imageOptions">
+      <smx-radio-group 
+        class="option-list answers-container" #radio 
+        (change)="selectOption(radio.value)" 
+        [selected]="value"
+        [class.horizontal]="dir == 'horizontal'" [name]="id">
+        <smx-radio 
+          class="option-item" 
+          *ngFor="let option of options"
+          [value]="option.value"
+          [ngClass]="{ selected: value == option.value }">
+          <span [innerHTML]="option.displayValue | safeHtml"></span>
+        </smx-radio>
+
+        <smx-radio 
+          [name]="id" value="NA" 
+          class="option-item" *ngIf="isNAOption"
+          [ngClass]="{ selected: value == 'NA' }">
+          <span>{{translations.naOptionLabel}}</span>
+        </smx-radio>
+        <smx-radio 
+          [name]="id" value="other" 
+          class="option-item" *ngIf="isOtherOption"
+          [ngClass]="{ selected: isOtherSelected }"
+          (click)="focusOtherTextbox(textArea)"
+          >
+            <span>{{translations.otherOptionLabel}}</span>
+        </smx-radio>
+
+      </smx-radio-group>
+    </ng-container>
+
+    <!-- Container for single select question with images in options  -->
+    <ng-container *ngIf="imageOptions">
+      <div class="tiles-list answers-container" [class.horizontal]="dir == 'horizontal'">
+        <smx-tile 
+          *ngFor="let option of options" #check 
+          class="option-item" 
+          [name]="optionName" 
+          [image]="option.image"
+          [icon]="option.icon"
+          [value]="option.value" 
+          [multi]="isMulti" 
+          [selected]="option.value == value"
+          (change)="selectImageOption(option.value)">
+          <span 
+            [title]="stripHtmlTags(option.displayValue)" 
+            [innerHTML]="option.displayValue | safeHtml">
+          </span>
+        </smx-tile>
+        <smx-tile *ngIf="isNAOption" #check value="NA" class="option-item" [name]="optionName" [multi]="isMulti"
+          [icon]="'not-allowed'" [selected]="value == 'NA'" (change)="selectNA('NA')">
+          <span [title]="translations.naOptionLabel">{{translations.naOptionLabel}}</span>
+        </smx-tile>
+        <smx-tile *ngIf="isOtherOption" #check value="other" class="option-item" [name]="optionName" [multi]="isMulti"
+          [icon]="'chat'" (change)="selectImageOption('other')" [selected]="isOtherSelected" (click)="focusOtherTextbox(textArea)">
+          <span [title]="translations.otherOptionLabel">{{translations.otherOptionLabel}}</span>
+        </smx-tile>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Container for multi select questions -->
+  <ng-container *ngIf="isMulti">
+    <!-- Container for multi select questions for simple text options -->
+    <div class="multi-option-msg" [innerHTML]='translations?.multipleOptionsMessage'></div>
+    <ng-container *ngIf="!imageOptions">
+      <div class="option-list answers-container" [class.horizontal]="dir == 'horizontal'">
+        <smx-checkbox #check class="option-item" 
+          (change)="selectOption(check.checked)" 
+          *ngFor="let option of options"
+          [value]="option.value" 
+          [checked]="isOptionSelected(option.value)">
+          <span [innerHTML]="option.displayValue | safeHtml"></span>
+        </smx-checkbox>
+        <smx-checkbox 
+          class="option-item" value="NA" #check 
+          *ngIf="isNAOption"          
+          (change)="selectNA(check.checked)" 
+          [checked]="isOptionSelected('NA')">
+            {{translations.naOptionLabel}}
+        </smx-checkbox>
+        <smx-checkbox 
+          class="option-item" value="other" 
+          #check *ngIf="isOtherOption"
+          (change)="selectOption(check.value)"
+          [checked]="isOtherSelected"
+          (click)="focusOtherTextbox(textArea)">
+            {{translations.otherOptionLabel}}
+        </smx-checkbox>
+      </div>
+    </ng-container>
+
+    <!-- Container for multi select questions for question with images in options -->
+    <ng-container *ngIf="!shapeSelected && imageOptions">
+      <div class="tiles-list answers-container" [class.horizontal]="dir == 'horizontal'">
+        <smx-tile #check class="option-item" *ngFor="let option of options" [image]="option.image"
+          [value]="option.value"  [icon]="option.icon" [multi]="isMulti" (change)="selectImageOption(check.checked)"
+          [selected]="isOptionSelected(option.value)">
+          <span [title]="stripHtmlTags(option.displayValue)" [innerHTML]="option?.displayValue | safeHtml"></span>
+        </smx-tile>
+        <smx-tile #check [name]="id" value="NA" class="option-item" *ngIf="isNAOption"
+          [icon]="'not-allowed'" (change)="selectNA(check.checked)"
+          [selected]="isOptionSelected('NA')">
+          <span [title]="translations.naOptionLabel">{{translations.naOptionLabel}}</span>
+        </smx-tile>
+        <smx-tile #check [name]="id" value="other" class="option-item" *ngIf="isOtherOption"
+          [icon]="'chat'" (change)="selectImageOption(check.checked)"
+          [selected]="isOtherSelected" (click)="focusOtherTextbox(textArea)">
+          <span [title]="translations.otherOptionLabel">{{translations.otherOptionLabel}}</span>
+        </smx-tile>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div [ngClass]="{'hide': !isOtherSelected}" class="other-option-text answers-container">
+    <textarea class="textarea" [(ngModel)]="otherOptionText" (blur)="onOtherOptionValueChange($event)"
+      placeholder="{{translations.otherOptionPlaceHolder}}"  (keydown)="autoGrowText($event)" #textArea>
+    </textarea>
+    <p *ngIf="(isOtherSelected && otherNotAnswerd) || formErrors?.otherRequired " class="error-text">
+      {{translations.emptyOtherLabel}}
+    </p>  
+    <div class="msg" [innerHTML]='translations?.lineBreakMessage | safeHtml'></div>
+  </div>
+  <div *ngIf="isMulti || isOtherSelected" class="action answers-container">
+    <button class="button" (click)="submitMultipleResponse($event)">{{translations.okButtonLabel}}</button>
+  </div>
+
+</div>

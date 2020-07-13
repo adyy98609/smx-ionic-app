@@ -1,0 +1,20 @@
+<div class="select-container" (click)="toggle($event)" [style.width]="width">
+  <div class="select-label">{{ fieldLabel || placeholder}} </div>
+  <div class="select-caret">
+    <i class="icon-button chev-down"></i>
+  </div>
+  <div [className]="dropdownClass" *ngIf="isOpen">
+    <!-- <div class="search-container" *ngIf="searchable" (click)="openSearch($event)">
+      <i class="fa fa-search"></i>
+      <input type="search" #search [(ngModel)]="searchTxt" class="search-input">
+    </div> -->
+    <ul class="option-list">
+      <li class="option" (click)="selectOption($event,option)"
+        *ngFor="let option of selectData" [value]="option[valueKey]">
+        {{option[labelKey]}}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="isOpen" class="overlay" (click)="close($event)"></div>
+</div>
+<em class="select-error" *ngIf="errorMsg">{{errorMsg}}</em>

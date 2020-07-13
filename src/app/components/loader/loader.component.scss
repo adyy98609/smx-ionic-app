@@ -1,0 +1,78 @@
+@import "./../../scss/default.scss";
+
+$margin:15px;
+
+.container {
+    @include flex(center,center);
+    height: 100%;
+    width: 100vw;
+
+    &-loader {
+        @include flex(center,center);
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        .circle {
+            @include circle(12px);
+            @include flex(center,center);
+            background-color: var(--page-button-color);
+            margin: 0 $margin;            
+            &.scale{
+                animation: scale 1s ease-in-out infinite;
+                &:nth-child(1) {
+                    animation-delay: -0.3s;
+                }
+                &:nth-child(2) {
+                    animation-delay: 0s;
+                }
+    
+                &:nth-child(3) {
+                    animation-delay: 0.3s;
+                }
+            }
+
+            &.bounce{
+                animation: bounce 1s ease-in-out  infinite;
+                &:nth-child(1){
+                    animation-delay: -0.3s;
+                }
+                &:nth-child(2){
+                    animation-delay: 0s;
+                }
+                &:nth-child(3){
+                    animation-delay: 0.3s;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet-breakpoint) {
+    .container-loader{
+        .circle {
+            @include circle(15px);
+        }
+    }
+}
+
+
+@keyframes scale {
+    0%,
+    40%,
+    100% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.33);
+    }
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(100%);
+    }
+}

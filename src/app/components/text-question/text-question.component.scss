@@ -1,0 +1,33 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.question-container {
+  @include ques-block;
+  cursor: default;
+  .header {
+    font-size: $ques-font-size;
+    color: var(--question-color);
+    width: 100%;
+    .label span{
+      hyphens: auto;
+    }
+  }
+  .action {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    .button {
+      @include button;
+      color: var(--page-button-text-color);
+      background-color: var(--page-button-color);
+    }
+  }
+  &.no-text{
+    background: none !important;
+    box-shadow: none !important;
+  }
+}
+
+

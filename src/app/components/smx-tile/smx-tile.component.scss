@@ -1,0 +1,76 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.tile-container {
+  @include flex(center, center, column);
+  box-shadow: $box-shadow;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  .tile {
+    padding: 20px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    height: 100%;
+    img {
+      height: 98px;
+      max-width: 100%;
+      max-height: 100%;
+      width: 98px;
+      object-fit: contain;
+    }
+    smx-icon {
+      height: 98px;
+      width: 98px;
+    }
+    .input {
+      display: none;
+    }
+    .ribbon {
+      @include ribbon(60px, #57575E);
+      position: absolute;
+      top: 0;
+      right: 0;
+      svg {
+        position: absolute;
+        left: 30px;
+        top: 10px;
+        fill: $color-white;
+      }
+    }
+  }
+  .label {
+    @include flex(center, center, row);
+    width: 90%;
+    height: 100%;
+    letter-spacing: 0px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    // & img{
+    //   opacity: 0.5;
+    // }
+    .checkbox-input {
+      border-color: $color-disable;
+    }
+    // .label {
+    //   color: $color-disable;
+    // }
+  }
+  &.selected {
+    background-color: $color-default;
+    color: $color-white;
+
+    .tile {
+      .ribbon {
+        border-color: transparent $tile-ribbon-color transparent transparent;
+      }
+    }
+  }
+}

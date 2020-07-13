@@ -1,0 +1,139 @@
+// display flex with provided attributes
+@import "variables";
+
+@mixin flex($h: flex-start, $v: flex-start, $dir: row) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $h;
+  align-items: $v;
+}
+
+/// Creates circle with specified size
+/// @param $size - size of circle (diameter)
+/// @param { Boolean } $force - forces, width in case space not available
+@mixin circle($size, $force: false) {
+  @if $force {
+    min-width: $size;
+    min-height: $size;
+    height: $size;
+  } @else {
+    width: $size;
+    height: $size;
+  }
+
+  border-radius: 50%;
+}
+
+@mixin ellipsis($maxWidth) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin button() {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  background-color: $color-default;
+  padding: 12px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:focus {
+    opacity: 1;
+  }
+}
+
+/// creates a ribbon
+/// @param $size - size of ribbon
+@mixin ribbon($size, $color) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 $size $size 0;
+  border-color: transparent $color transparent transparent;
+}
+
+/// Creates column layout with passed number of column $count argument,
+/// @param { Number } $count - total number of columns in layout
+/// @param { Boolean } $force - forces layout to display passed count even if space is not available
+/// @param { String } $spacing - forces layout to with provided spacing between them
+@mixin column-count($count: 1, $force: false, $spacing: $ques-option-margin) {
+  display: flex;
+  flex-wrap: wrap;
+  & > * {
+    @if $force {
+      min-width: calc(100% / #{$count} - (#{$spacing} * #{$count}));
+    } @else {
+      max-width: calc(100% / #{$count} - (#{$spacing} * #{$count}));
+      width: 100%;
+    }
+  }
+}
+
+/// Creates question block with default stylings
+@mixin ques-block($falign: flex-start) {
+  @include flex(flex-start, $falign, column);
+  padding: $ques-padding;
+  transition: $transition-dur $transition-ease;
+  box-shadow: $ques-box-shadow;
+  background-color: $ques-bg-color;
+}
+
+/// Creates container block with default stylings
+@mixin container-block() {
+  @include flex(flex-start, center, column);
+  box-shadow: $box-shadow;
+  padding: $box-padding;
+  transition: $transition-dur $transition-ease;
+  box-shadow: $ques-box-shadow;
+  background-color: $ques-bg-color;
+}
+
+@mixin error-box() {
+  background: $input-error-bg-color 0% 0% no-repeat padding-box;
+  border: 1px solid $input-error-border-color;
+  opacity: 1;
+}
+
+@mixin error-text() {
+  text-align: left;
+  font: Italic 13px/18px "Open Sans";
+  letter-spacing: 0px;
+  color: $color-danger;
+  opacity: 1;
+}
+
+@mixin textarea-block() {
+  textarea::placeholder {
+    opacity: 0.5;
+    color: $color-default;
+  }
+  .textarea {
+    height: $textarea-height;
+    width: $textarea-width;
+    border: $textarea-border;
+    padding: $textarea-padding;
+    border-radius: $textarea-border-radius;
+    font-size: $font-size;
+    font-family: inherit;
+    resize: none;
+    outline: $textarea-focus-outline;
+    overflow: hidden;
+    color: var(--question-answer-color);
+    border-bottom: 1px solid $color-disable;
+    background: none;
+    &:focus {
+      outline: $textarea-focus-outline;
+      width: $textarea-width;
+      border-bottom: 1px solid;
+    }
+  }
+  .msg {
+    padding-top: $textarea-msg-padding;
+    color: var(--question-color);
+    font-size: $textarea-msg-font-size;
+  }
+}

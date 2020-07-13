@@ -1,0 +1,30 @@
+<div class="question-container">
+    <div class="header">
+        <span class="label" [ngClass]="{'mandatory-sign': required=='Y'}">
+            <span [innerHTML]="headerTxt | safeHtml"></span>
+        </span>
+    </div>
+
+    <div class="question-error" *ngIf="formErrors?.required || mandatory">
+        <p><span class="mandatory-sign"></span>{{translations.requiredLabel}}</p>
+    </div>
+
+    <div class="question-response answers-container">
+        <textarea *ngIf="type =='COMMENT'" class="textarea" rows="1"
+            placeholder="Please type your answer here" (change)="respond($event)"
+            (keydown)="autoGrowText($event)" [value]="value" #textArea></textarea>
+        <input *ngIf="type =='NUMERIC'" type="text" class="textarea"
+            placeholder="{{translations.otherOptionPlaceHolder}}" (keyup)="respond($event)" [value]="value" #input>
+        <p *ngIf="formErrors" class="error-text">{{
+            formErrors?.numberFormatError ? translations?.numberRequiredMessage : 
+            formErrors?.rangeError ? translations?.numberRangeMessage : 
+            formErrors?.maxlength ? translations?.maxLengthMessage : ''
+         }}</p>
+        <div>
+            <p *ngIf="type == 'COMMENT'" class="msg" [innerHTML]='translations?.lineBreakMessage | safeHtml'></p>
+            <div class="action">
+                <button class="button" (click)="submitComment($event)">{{translations.okButtonLabel}}</button>
+            </div>
+        </div>
+    </div>
+</div>

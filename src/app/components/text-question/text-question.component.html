@@ -1,0 +1,10 @@
+<div class="question-container" [ngClass]="{'no-text': !headerTxt}">
+    <div class="header" *ngIf="headerTxt">
+        <span class="label">
+            <span [innerHTML]="headerTxt | safeHtml"></span>
+        </span>
+    </div>
+    <div class="action" *ngIf="type=='SUBMIT'">
+        <button class="button" (click)="emitAutoscrollEvent()">{{translations.submitButtonLabel}}</button>
+      </div>
+</div>

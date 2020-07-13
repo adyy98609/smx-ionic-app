@@ -1,0 +1,37 @@
+<div class="question-container">
+    <div class="question-response answers-container">
+        <textarea class="textarea" rows="1" placeholder="{{translations.otherOptionPlaceHolder}}"
+            (change)="respond($event)" (keydown)="autoGrowText($event)"
+            [value]="value"
+            #textArea></textarea>
+        <div class="question-error" *ngIf="isRequired">
+            <p class="error-text" [innerHTML]='translations?.emptyPostComment | safeHtml'></p>
+        </div>
+        <div>
+            <p class="msg" [innerHTML]='translations?.lineBreakMessage | safeHtml'></p>
+        </div>
+    </div>
+
+    <div class="social-container" *ngIf="socialShareLinks && socialShareLinks.links.length">
+        <span class="label">
+            <span [innerHTML]="socialShareLinks?.label | safeHtml"></span>
+        </span>
+        <div class="social-links">
+            <ng-container *ngFor="let link of socialShareLinks.links;">
+                <img class="icon" (click)="shareSocial(link)" [src]="'assets/imgicon-'+(link.id).toLowerCase()+'.png'"
+                    alt="">
+            </ng-container>
+        </div>
+    </div>
+
+    <div class=" social-container" *ngIf="socialReviewLinks && socialReviewLinks.links.length">
+        <span class="label">
+            <span [innerHTML]="socialReviewLinks?.label | safeHtml"></span>
+        </span>
+        <div class="social-links">
+            <ng-container *ngFor="let link of socialReviewLinks.links;">
+                <img class="icon" (click)="reviewSocial(link)" [src]="'assets/'+link.icon+'.png'" alt="">
+            </ng-container>
+        </div>
+    </div>
+</div>

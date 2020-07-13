@@ -1,0 +1,12 @@
+<div class="input-container" [ngClass]="{'hidden-field': type=='hidden'}">
+    <label class="label" *ngIf="type != 'hidden'">
+        <span [ngClass]="{'mandatory-sign': required}">{{label}}</span>
+    </label>
+    <input 
+        [disabled]="disabled" 
+        [ngClass]="{'error-box': hasErrors}" 
+        #input [type]="type" 
+        [value]="value"
+        (change)="onChange(input.value)"
+    >
+</div>

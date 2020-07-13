@@ -1,0 +1,11 @@
+<label class="radio-container">
+    <div class="radio-input">
+        <input type="radio" [name]="name" class="input" #input (change)="selectionChange(input.value)" [value]="value"
+            [checked]="checked">
+        <div class="state"></div>
+    </div>
+    <span class="label">
+        <ng-content></ng-content>
+    </span>   
+</label>
+

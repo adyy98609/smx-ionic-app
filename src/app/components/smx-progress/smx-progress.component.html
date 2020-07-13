@@ -1,0 +1,5 @@
+<div *ngIf="currentPage" class="progress-container">
+    <div class="meter">
+        <span [style.width.%]="getProgress(currentPage)"></span>
+    </div>
+</div>

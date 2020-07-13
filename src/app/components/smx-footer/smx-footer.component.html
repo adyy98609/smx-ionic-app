@@ -1,0 +1,20 @@
+<div class="footer-container">
+
+
+  <div class="icon-button" [class.hidden]="!pageRoutes?.prevRoute" (click)="previous()">
+    <smx-icon class="left-arrow" name="arrow-left">
+    </smx-icon>
+  </div>
+
+  <div class="footer-logo" *ngIf="poweredBySMXLogoYN === 'Y'">
+    <span class="powered">{{poweredByText}}</span>
+    <img src="assets/smx-logo.svg" alt="smx_logo">
+  </div>
+
+  <div class="icon-button" [class.hidden]="!pageRoutes?.nextRoute" (click)="next()">
+    <smx-icon class="right-arrow" name="arrow-right">
+    </smx-icon>
+  </div>
+
+
+</div>

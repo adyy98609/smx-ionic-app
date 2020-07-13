@@ -1,0 +1,18 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.input-container {
+  @include flex(unset, unset, column);
+  flex-grow: 1;
+  input {
+    height: $input-height;
+    border: 1px solid var(--question-answer-color);
+    padding: $input-padding;
+    border-radius: $input-border-radius;
+    font-size: $font-size;
+    outline: none;
+    &::-ms-clear {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<svg  *ngIf="!viewBox" xmlns="http://www.w3.org/2000/svg" 
+    viewBox="-1 -1 26 26"
+    [attr.fill-rule]="fillRule"
+    alignment-baseline="center">
+    <use attr.xlink:href="assets/icon-map.svg#{{name}}"></use>
+</svg>
+<svg  
+    *ngIf="viewBox"xmlns="http://www.w3.org/2000/svg" 
+    [attr.viewBox]="viewBox"
+    [attr.fill-rule]="fillRule"
+    alignment-baseline="center">
+    <use attr.xlink:href="assets/icon-map.svg#{{name}}"></use>
+</svg>
+<span class="content">
+    <ng-content></ng-content>
+</span>

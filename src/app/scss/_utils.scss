@@ -1,0 +1,52 @@
+/*
+    This file contains global styles and classes commonly used.
+*/@import "variables";
+@import "mixins";
+
+//* sign used to show mandatory field
+.mandatory-sign::after {
+  content: "*";
+  font-weight: 700;
+  color: $color-danger;
+}
+
+.noevent {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Error text shown under fields in case of error
+.error-text {
+  text-align: left;
+  font: Italic 13px/18px "Open Sans";
+  letter-spacing: 0px;
+  color: $color-danger;
+  opacity: 1;
+}
+
+// Input box highlight style in case of error present in field.
+//e.g. used to highlight input text block in case of error
+.error-box {
+  background: $input-error-bg-color 0% 0% no-repeat padding-box;
+  border: 1px solid $input-error-border-color !important;
+  opacity: 1;
+}
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: initial;
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .question-container {
+    padding: $ques-padding;
+  }
+}
+
+@media only screen and (min-width: $mobile-breakpoint) {
+  .question-container {
+    padding: $ques-padding-lg;
+  }
+}

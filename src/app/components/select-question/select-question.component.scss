@@ -1,0 +1,115 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.question-container {
+  @include ques-block;
+  .header {
+    font-size: $ques-font-size;
+    color: var(--question-color);
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .question-error{
+    padding-bottom: 10px;
+  }
+
+  .multi-option-msg {
+    color: var(--question-color);
+    font-size: $ques-option-msg-font-size;
+    margin: 10px 0 20px 0;
+  }
+
+  .option-list {
+    width: 100%;
+  }
+  .tiles-list {
+    @include flex(center, center);
+    flex-wrap: wrap;
+    width: 100%;
+    smx-tile.option-item {
+      margin: $ques-option-margin;
+      height: 200px;
+      width: 150px;
+    }
+  }
+  .option-item {
+    @include flex(flex-start, center);
+    background-color: var(--answer-shade-color);
+    margin-bottom: $ques-option-margin;
+    border: 1px solid var(--question-answer-color);
+    border-radius: $box-radius;
+    color: var(--question-answer-color);
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.selected {
+      background-color: var(--question-answer-color);
+      color: var(--answer-shade-color);
+    }
+  }
+  .shapes-list {
+    @include column-count(2, true);
+    .option-item {
+      justify-content: center;
+      background-color: unset;
+      border: unset;
+    }
+  }
+
+  .action {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    .button {
+      @include button;
+      color: var(--page-button-text-color);
+      background-color: var(--page-button-color);
+    }
+  }
+
+  .other-option-text {
+    width: 100%;
+    padding-top: 25px;
+    @include textarea-block;
+    .msg {
+      color: var(--question-color);
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile-breakpoint) {
+  .question-container {
+    .tiles-list {
+      @include column-count(2);
+      align-items: flex-start;
+    }
+  }
+}
+@media only screen and (min-width: $tablet-breakpoint) {
+  .question-container {
+    .horizontal {
+      &.option-list {
+        @include column-count(2, false, 5px);
+        justify-content: space-between;
+      }
+      &.tiles-list {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+@media only screen and (min-width: $desktop-breakpoint) {
+  .question-container {
+    .horizontal {
+      &.option-list {
+        @include column-count(2, false, 5px);
+        justify-content: space-between;
+      }
+    }
+    .tiles-list {
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.question-container {
+  @include ques-block;
+  .header {
+    padding-bottom: $ques-header-padding;
+    font-size: $ques-font-size;
+    // color: $ques-color;
+    color: var(--question-color);
+    width: 100%;
+    .sequence-header {
+      color: $color-danger;
+    }
+  }
+  .question-error{
+    padding-bottom: 10px;
+  }
+  .question-response {
+    width: $response-input-width;
+    padding-bottom: $ques-resp-padding;
+    @include textarea-block;
+    .msg {
+      color: var(--question-color);
+    }
+    .action {
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      .button {
+        @include button;
+        color: var(--page-button-text-color);
+        background-color: var(--page-button-color);
+      }
+    }
+  }
+}

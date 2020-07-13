@@ -1,0 +1,51 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.checkbox-container {
+  @include flex(flex-start, center);
+  flex-grow: 1;
+  word-break: break-word;
+  padding: 10px;
+
+  cursor: pointer;
+  .checkbox-input {
+    @include flex(center, unset);
+    min-height: $radio-size;
+    min-width: $radio-size;
+    border: 1px solid var(--question-answer-color);
+    background: #fff;
+    border-radius: 1px;
+    .input {
+      display: none;
+      &:checked ~ .state {
+        opacity: 1;
+        color: var(--question-answer-color);
+      }
+    }
+    .state {
+      transition: $transition-dur opacity $transition-ease;
+      opacity: 0;
+      width: $checkbox-check-width;
+      height: $checkbox-check-height;
+      border: 1px solid;
+      border-width: 0 $checkbox-check-size $checkbox-check-size 0;
+      transform: rotate(45deg);
+    }
+  }
+  .label {
+    margin-left: $input-label-margin;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    .checkbox-input {
+      border-color: $color-disable;
+      .state {
+        border-color: $color-disable;
+      }
+    }
+    .label {
+      color: $color-disable;
+    }
+  }
+}

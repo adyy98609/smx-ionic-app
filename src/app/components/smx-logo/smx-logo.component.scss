@@ -1,0 +1,30 @@
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+:host {
+  width: 100%;
+  text-align: var(--page-logo-position);
+  // margin-bottom: 30px;
+}
+
+.logo-container {
+  img {
+    max-height: $logo-height;
+    object-fit: contain;
+  }
+}
+.no-image {
+  display: none;
+  & .logo-container {
+    display: none;
+    height: 0;
+  }
+}
+
+@media only screen and (min-width: $tablet-breakpoint) {
+  .logo-container {
+    img {
+      max-height: $logo-height-lg;
+    }
+  }
+}

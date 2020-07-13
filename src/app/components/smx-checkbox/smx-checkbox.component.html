@@ -1,0 +1,12 @@
+<label class="checkbox-container" [class.disabled]="disabled" [ngClass]="{'selected': checked}">
+  <div class="checkbox-input">
+    <input #input type="checkbox" 
+      [disabled]="disabled"
+      [checked]="checked" class="input" [value]="value"
+      (change)="selectionChange(input.checked)" />
+    <div class="state"></div>
+  </div>
+  <div class="label">
+    <ng-content></ng-content>
+  </div>
+</label>

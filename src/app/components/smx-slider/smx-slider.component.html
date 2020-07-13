@@ -1,0 +1,90 @@
+<div class="slider-container" [class.disabled]="disabled">
+    <div class="slider-shape" 
+        [class.no-value]="value == null || value == undefined" 
+        *ngIf="type == 'SLIDER' && !showFaceEmojis">
+        <smx-icon [name]="shape">
+            <span class="value" *ngIf="value !== 'NA'">{{value}}</span>
+        </smx-icon>
+    </div>
+    <div class="slider-shape" 
+        [class.no-value]="value == null || value == undefined" 
+        *ngIf="type == 'SLIDER' && showFaceEmojis">
+        <smx-icon 
+            *ngIf="value == null || value == undefined || value == 'NA'"
+            class="emoji-icon default-emoji"
+            name="emoji_5">
+        </smx-icon>
+        <smx-icon *ngIf="value && value != 'NA'"
+            class="emoji-icon"
+            [name]="emojisValue[value]">
+        </smx-icon>
+    </div>
+    <div class="labels">
+        <ng-container *ngFor="let option of scaleList">
+            <div class="label">
+                <span  *ngIf="option.value !== option.displayValue"  [innerHTML]="option.displayValue"></span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="slider-track">
+        <ng-container *ngIf="type=='TAP'; else slideTpl">
+            <ng-container *ngIf="!showFaceEmojis">
+                <smx-icon 
+                    (click)="select(option.value, $event)"
+                    [attr.data-idx]="option.displayValue"
+                    [class.active]="(value || value == 0) && option.value <= value" 
+                    [name]="shape"
+                    *ngFor="let option of scaleList">
+                    <span *ngIf="showValue" class="value">{{option.value}}</span>
+                </smx-icon>
+            </ng-container> 
+            <ng-container *ngIf="showFaceEmojis">
+                <smx-icon 
+                    (click)="select(option.value, $event)" 
+                    [attr.data-idx]="option.displayValue"
+                    class="face-emoji" [class.active]="option.value == value" 
+                    [name]="emojisValue[option.value]"
+                    *ngFor="let option of scaleList">
+                </smx-icon>
+            </ng-container>
+        </ng-container>
+
+        <ng-template #slideTpl>
+            <ng-container *ngIf="!showValue">
+                <div 
+                    (click)="select(dot.value, $event)"
+                    class="number" class="dot"
+                    [attr.data-idx]="dot.displayValue"
+                    [class.active]="dot.value == value"
+                    *ngFor="let dot of scaleList">
+                        <div class="dot-shape"></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="showValue">
+                <div 
+                    (click)="select(dot.value, $event)" 
+                    class="number"
+                    [attr.data-idx]="dot.displayValue"
+                    [class.active]="dot.value == value"
+                    *ngFor="let dot of scaleList">
+                    {{dot.value}}
+                </div>
+            </ng-container>
+        </ng-template>
+
+    </div>
+    <input #range 
+        [style.direction]="direction"
+        *ngIf="type == 'SLIDER'"
+        [disabled]="disabled"
+        [value]="privateValue"
+        [class.no-value]="value == null || value == undefined"
+        (input)="privateValue = value = range.value"
+        (mouseup)="select(range.value, $event)"
+        (touchend)="select(range.value, $event)"
+        (touchcancel)="select(range.value,  $event)"
+        class="range"
+        type="range"
+        [min]="minValue"
+        [max]="maxValue">
+</div>
